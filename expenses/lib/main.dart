@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+import 'package:expenses/components/chart.dart';
 import 'package:expenses/components/transaction_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,17 +36,35 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions_ = [
-    // Transaction(
-    //     id: 't1',
-    //     title: 'Novo Tênis da Nikeeee',
-    //     value: 254.56,
-    //     date: DateTime.now()),
-    // Transaction(
-    //     id: 't2',
-    //     title: 'Conta de Luz da Cemig',
-    //     value: 150.2,
-    //     date: DateTime.now()),
+    Transaction(
+        id: 't1',
+        title: 'Novo Tênis da Nikeeee',
+        value: 254.56,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't3',
+        title: 'Pastel iaiade',
+        value: 254.56,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: 't4',
+        title: 'Pinga Agatao',
+        value: 254.56,
+        date: DateTime.now().subtract(Duration(days: 33))),
+    Transaction(
+        id: 't2',
+        title: 'Conta de Luz da Cemig',
+        value: 150.2,
+        date: DateTime.now()),
   ];
+
+  List<Transaction> get _recentTransactions {
+    return _transactions_.where((transaction) {
+      return transaction.date
+          .isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList();
+  }
+
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
         id: Random().nextDouble().toString(),
@@ -80,12 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          Container(
-              child: const Card(
-            elevation: 5,
-            color: Colors.blue,
-            child: Text('Gráfico'),
-          )),
+          Container(child: Chart(_recentTransactions)),
           TransactionList(_transactions_),
         ]),
       ),
