@@ -35,16 +35,35 @@ class _TransactionFormState extends State<TransactionForm> {
                 decoration: const InputDecoration(labelText: 'Titulo'),
               ),
               TextField(
-                  keyboardType: TextInputType.number,
-                  controller: valueController,
-                  onSubmitted: (_) => _submitForm(),
-                  decoration: const InputDecoration(
-                    labelText: 'Valor (R\$)',
-                  )),
+                keyboardType: TextInputType.number,
+                controller: valueController,
+                onSubmitted: (_) => _submitForm(),
+                decoration: const InputDecoration(
+                  labelText: 'Valor (R\$)',
+                ),
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    Text('Nenhuma data selecionada!'),
+                    SizedBox(
+                      width: 40,
+                    ),
+                    TextButton(
+                      child: Text(
+                        'Selecionar Data',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
+                  ElevatedButton(
                       child: const Text('Nova Transação'),
                       onPressed: _submitForm),
                 ],

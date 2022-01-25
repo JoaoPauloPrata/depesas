@@ -22,7 +22,7 @@ class Chart extends StatelessWidget {
         }
       }
       return {'day': DateFormat.E().format(weekDay)[0], 'value': dayValue};
-    });
+    }).reversed.toList();
   }
 
   double get _weekTotalValue {
@@ -49,7 +49,7 @@ class Chart extends StatelessWidget {
                 ((tr['value'] as double) / _weekTotalValue),
               ),
             );
-          })valuereversed.toList(),
+          }).toList(),
         ),
       ),
     );
