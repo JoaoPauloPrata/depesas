@@ -12,7 +12,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   _submitForm() {
     final title = _titleController.text;
-    final date = _selectedDate;
+    final date = _selectedDate == null ? DateTime.now() : _selectedDate;
     final value = double.tryParse(_valueController.text) ?? 0.0;
     if (title.isEmpty || value <= 0) {
       return;

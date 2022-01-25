@@ -15,11 +15,11 @@ class TransactionList extends StatelessWidget {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Nenhum gasto cadastrado.',
                   style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -55,7 +55,7 @@ class TransactionList extends StatelessWidget {
                     ),
                     subtitle: Text(DateFormat('d MMM y').format(tr.date)),
                     trailing: IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: const Icon(Icons.delete),
                       onPressed: () => onRemove(tr.id),
                       color: Colors.red,
                     ),
