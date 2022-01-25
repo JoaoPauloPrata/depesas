@@ -68,11 +68,8 @@ class _TransactionFormState extends State<TransactionForm> {
                 child: Row(
                   children: <Widget>[
                     _selectedDate == null
-                        ? Text('Nenhuma data selecionada')
-                        : Text(DateFormat('d/M/y').format(_selectedDate)),
-                    SizedBox(
-                      width: 40,
-                    ),
+                        ? Expanded(child: Text('Nenhuma data selecionada'))
+                        : Text(DateFormat('dd/MM/y').format(_selectedDate)),
                     TextButton(
                       child: Text(
                         'Selecionar Data',

@@ -35,28 +35,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions_ = [
-    Transaction(
-        id: 't1',
-        title: 'Novo Tênis da Nikeeee',
-        value: 254.56,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: 't3',
-        title: 'Pastel iaiade',
-        value: 254.56,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: 't4',
-        title: 'Pinga Agatao',
-        value: 254.56,
-        date: DateTime.now().subtract(Duration(days: 33))),
-    Transaction(
-        id: 't2',
-        title: 'Conta de Luz da Cemig',
-        value: 150.2,
-        date: DateTime.now()),
-  ];
+  final List<Transaction> _transactions_ = [];
 
   List<Transaction> get _recentTransactions {
     return _transactions_.where((transaction) {
@@ -75,6 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _transactions_.add(newTransaction);
     });
     Navigator.of(context).pop();
+  }
+
+  _deleteTransaction(String id) {
+    setState(() {
+      _transactions_.removeWhere((tr) => tr.id == id);
+    });
   }
 
   _openTransactionFormModal(BuildContext context) {
@@ -100,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child:
             Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Container(child: Chart(_recentTransactions)),
-          TransactionList(_transactions_),
+          TransactionList(_transactions_, _deleteTransaction),
         ]),
       ),
       floatingActionButton: FloatingActionButton(
